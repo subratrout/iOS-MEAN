@@ -9,6 +9,15 @@
             socket.on('connect', function (data) {
               console.log('BROWSER::WE ARE USING SOCKETS!');
             })
+
+            socket.on("javascript", function(data) {
+              console.log("a vote for javascript");
+              socket.broadcast.emit("update_javascript");
+            });
+            socket.on("swift", function(data) {
+              console.log("a vote for swift");
+              socket.broadcast.emit("update_swift");
+            });
         })
     </script>
   </head>
