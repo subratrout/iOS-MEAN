@@ -23,10 +23,23 @@ io.sockets.on('connection', function (socket) {
   console.log(socket.id);
 
    socket.on("javascript", function(data) {
-       console.log("a vote for javascript");
+       console.log(data);
+       socket.broadcast.emit("update_javascript",data);
    });
    socket.on("swift", function(data) {
-       console.log("a vote for swift");
+       console.log(data);
+       socket.broadcast.emit("update_swift", data);
    });
+
+
+   // socket.on("javascript_counter", function(data) {
+   //     console.log("an increase in vote for javascript");
+   //     socket.broadcast.emit("update_javascript_counter");
+   // });
+   // socket.on("swift_counter", function(data) {
+   //     console.log("an increase in vote for swift");
+   //     socket.broadcast.emit("update_swift_counter");
+   // });
+
 });
 

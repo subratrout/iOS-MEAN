@@ -3,6 +3,27 @@
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <style>
+    #score {
+      display: inline;
+    }
+    #javascript {
+      height: 100px;
+      width: 100px;
+      border: 3px solid green;
+      font-size: 20px;
+      text-align: center;
+      padding-top: 30px;
+    }
+     #swift {
+      height: 100px;
+      width: 100px;
+      border: 3px solid red;
+      font-size: 20px;
+      text-align: center;
+      padding-top: 30px;
+    }
+    </style>
     <script type ="text/javascript">
         $(document).ready(function (){ 
             var socket = io.connect();
@@ -10,21 +31,24 @@
               console.log('BROWSER::WE ARE USING SOCKETS!');
             })
 
-            socket.on("javascript", function(data) {
-              console.log("a vote for javascript");
-              socket.broadcast.emit("update_javascript");
-            });
-            socket.on("swift", function(data) {
-              console.log("a vote for swift");
-              socket.broadcast.emit("update_swift");
-            });
+            socket.on('update_javascript', function(data) {
+              console.log('update_javascript', data);
+              $('#javascript').html(data);
+            })
+
+            socket.on('update_swift', function(data) {
+              console.log('update_swift', data);
+              $('#swift').html(data);
+            })
         })
     </script>
   </head>
   <body>
-    <h1>JavaScript</h1>
-    <p>0</p>
-    <h1>Swift</h1>
-    <p>0</p>
+    <div id= "Score">
+      <h2>JavaScript</h2>
+      <p id= "javascript"></p>
+      <h2>Swift</h2>
+      <p id = "swift"></p>
+    </div>
   </body>
 </html>

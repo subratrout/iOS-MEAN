@@ -12,15 +12,19 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var javascriptButtonPressed: UIButton!
     
+    var javascript_counter = 0
+    var swift_counter = 0
     @IBAction func yellowButtonPressed(sender: UIButton) {
-        socket.emit("javascript")
+        javascript_counter++
+        socket.emit("javascript", javascript_counter)
     }
     
     @IBAction func orangeButtonPressed(sender: UIButton) {
-        socket.emit("Swift")
+        swift_counter++
+        socket.emit("swift", swift_counter)
     }
     
-    let socket = SocketIOClient(socketURL: "192.168.15.112")
+    let socket = SocketIOClient(socketURL: "192.168.15.112:6789")
     
     
     override func viewDidLoad() {
